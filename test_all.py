@@ -1,6 +1,6 @@
 import unittest
 import csv
-import gpt4all_emb
+# import gpt4all_emb
 import indo_bert
 
 class TestMethods(unittest.TestCase):

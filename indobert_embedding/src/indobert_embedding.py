@@ -16,14 +16,15 @@ def _ensure_initialized():
         return
     if INDO_BERT_EMBEDDING_USE_LOCAL_MODEL:
         logging.info("use local model")
-        tokenizer = AutoTokenizer.from_pretrained("lib/indobert-base-uncased")
-        model = AutoModel.from_pretrained("lib/indobert-base-uncased")
+        tokenizer = AutoTokenizer.from_pretrained("../lib/indobert-base-uncased")
+        model = AutoModel.from_pretrained("../lib/indobert-base-uncased")
     else:
         logging.info("use hf model")
         tokenizer = AutoTokenizer.from_pretrained("indolem/indobert-base-uncased")
         model = AutoModel.from_pretrained("indolem/indobert-base-uncased")
     model.eval()
     FIRST_INIT = True
+
 
 def get_embedding(text:str):
     _ensure_initialized()

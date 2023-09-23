@@ -1,6 +1,12 @@
 
 Text embedding encoder using [indolem/indobert-base-uncased](https://huggingface.co/indolem/indobert-base-uncased) as the model.
 
+## Installation
+
+```bash
+pip install indobert-embedding
+```
+
 ## Usage
 
 ```python

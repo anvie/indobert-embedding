@@ -1,7 +1,7 @@
 import unittest
 import csv
 # import gpt4all_emb
-import indo_bert
+import indo_bert as indo_bert
 
 class TestMethods(unittest.TestCase):
 
@@ -13,7 +13,7 @@ class TestMethods(unittest.TestCase):
     #             self._check(i, row, gpt4all_emb)
 
     def test_indo_bert(self):
-        with open("./data/test.csv", "r") as f:
+        with open("../data/test.csv", "r") as f:
             reader = csv.reader(f, quotechar='"', delimiter=',')
             next(reader)
             for i, row in enumerate(reader):

@@ -1,4 +1,4 @@
-
+import os
 import torch
 from transformers import AutoTokenizer, AutoModel
 import logging
@@ -8,18 +8,28 @@ tokenizer = None
 model = None
 
 FIRST_INIT = False
+INDO_BERT_EMBEDDING_USE_LOCAL_MODEL = os.environ.get("INDO_BERT_EMBEDDING_USE_LOCAL_MODEL", "false").lower() == "true"
 
 def _ensure_initialized():
-    global FIRST_INIT, tokenizer, model
+    global FIRST_INIT, INDO_BERT_EMBEDDING_USE_LOCAL_MODEL, tokenizer, model
     if FIRST_INIT:
         return
-    tokenizer = AutoTokenizer.from_pretrained("indolem/indobert-base-uncased")
-    model = AutoModel.from_pretrained("indolem/indobert-base-uncased")
+    if INDO_BERT_EMBEDDING_USE_LOCAL_MODEL:
+        logging.info("use local model")
+        tokenizer = AutoTokenizer.from_pretrained("lib/indobert-base-uncased")
+        model = AutoModel.from_pretrained("lib/indobert-base-uncased")
+    else:
+        logging.info("use hf model")
+        tokenizer = AutoTokenizer.from_pretrained("indolem/indobert-base-uncased")
+        model = AutoModel.from_pretrained("indolem/indobert-base-uncased")
     model.eval()
     FIRST_INIT = True
 
 def get_embedding(text:str):
     _ensure_initialized()
+    assert tokenizer is not None, "tokenizer not initialized"
+    assert model is not None, "model not initialized"
+
     text_input = f"[CLS] {text.lower()} [SEP]"
 
     tokenized_text = tokenizer.tokenize(text_input)

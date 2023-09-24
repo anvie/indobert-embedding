@@ -1,2 +1,4 @@
 *.pyc
-
+dist/
+build/
+indobert_embedding/lib/indobert-base-uncased/

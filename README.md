@@ -1,5 +1,5 @@
 
-Text embedding encoder using [IndoBERT](https://huggingface.co/indolem/indobert-base-uncased) as the model.
+Text embedding encoder using [IndoBERT](https://arxiv.org/abs/2011.00677) as the model.
 
 ## Installation
 

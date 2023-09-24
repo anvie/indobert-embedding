@@ -1,7 +1,7 @@
 import unittest
 import csv
 # import gpt4all_emb
-import indo_bert as indo_bert
+import src.indobert_embedding as indobert_embedding
 
 class TestMethods(unittest.TestCase):
 
@@ -17,7 +17,7 @@ class TestMethods(unittest.TestCase):
             reader = csv.reader(f, quotechar='"', delimiter=',')
             next(reader)
             for i, row in enumerate(reader):
-                self._check(i, row, indo_bert)
+                self._check(i, row, indobert_embedding)
 
 
     def _check(self, _index, row, embedding_lib):

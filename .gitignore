@@ -2,3 +2,4 @@
 dist/
 build/
 indobert_embedding/lib/indobert-base-uncased/
+gpt4all_emb.py
